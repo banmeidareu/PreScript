@@ -10,16 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.richard.prescript.CameraVerify">
 
-    <Button
-    android:id="@+id/button2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBottom="@+id/button3"
-    android:layout_toEndOf="@+id/button4"
-    android:layout_toRightOf="@+id/button4"
-    android:text="@string/confirm"
-    android:onClick="confirm_photo"/>
-
 
     <Button
         android:id="@+id/button3"
@@ -42,27 +32,39 @@
         android:text="@string/cancel"
         android:onClick="cancel_photo"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        android:text=" temporary holder for where the reminder message confirm goes"
-        android:textAlignment="center"
-        android:textSize="12pt"
-        android:layout_marginBottom="12dp"
-        android:layout_above="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/logo"
-        android:id="@+id/imageView2"
+        android:id="@+id/edit_message"
+        android:hint="@string/edit_message"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <EditView
+        android:id="@+id/verify_message"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:textAlignment="center"
+        android:textSize="12pt"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+    android:id="@+id/button2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:text="@string/confirm"
+    android:onClick="confirm_photo"
+        android:layout_alignBaseline="@+id/button3"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_toRightOf="@+id/button4"
+        android:layout_toEndOf="@+id/button4" />
 
 
 </RelativeLayout>
