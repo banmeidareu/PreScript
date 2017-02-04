@@ -12,4 +12,7 @@
     <string name="confirm">confirm</string>
     <string name="cancel">cancel</string>
 
+    <string name="take_pic">Take Picture</string>
+
+
 </resources>

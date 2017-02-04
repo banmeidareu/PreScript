@@ -13,7 +13,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void addPrescription(View view) {
-        System.out.println("hello");
+        Intent intent = new Intent (this, CameraVerify.class);
+        startActivity (intent);
     }
 
     public void viewPrescriptions (View view) {

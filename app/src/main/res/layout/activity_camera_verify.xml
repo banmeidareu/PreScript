@@ -11,31 +11,21 @@
     tools:context="com.example.richard.prescript.CameraVerify">
 
     <Button
+        android:id="@+id/Button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp"
-        android:id="@+id/button4" />
+        android:onClick="TakePicture"
+        android:text="@string/take_pic"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delete"
-        android:id="@+id/button3"
-        android:layout_above="@+id/button4"
-        android:layout_toLeftOf="@+id/button4"
-        android:layout_toStartOf="@+id/button4"
-        android:layout_marginBottom="21dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/confirm"
-        android:id="@+id/button2"
-        android:layout_toRightOf="@+id/button4"
-        android:layout_toEndOf="@+id/button4"
-        android:layout_alignBottom="@+id/button3" />
+    <ImageView
+        android:id="@+id/ImageView"
+        android:contentDescription="@string/app_name"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_marginBottom="128dp"
+        android:layout_above="@+id/Button"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
