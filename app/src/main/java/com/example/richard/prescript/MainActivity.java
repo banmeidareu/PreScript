@@ -16,8 +16,12 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("hello");
     }
 
-    public void openCamera (View view) {
-        Intent intent = new Intent(this, CameraDisplay.class);
+    public void viewPrescriptions (View view) {
+
+    }
+
+    public void viewMessageSubmit(View view) {
+        Intent intent = new Intent(this, MessageSubmit.class);
         startActivity(intent);
     }
 }

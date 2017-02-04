@@ -14,8 +14,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CameraDisplay" />
-        <activity android:name=".DisplayMessageActivity"></activity>
+        <activity android:name=".MessageSubmit" />
+        <activity android:name=".DisplayMessageActivity" />
+        <activity android:name=".PrescriptionList" />
+        <activity android:name=".PrescriptionDetails" />
+        <activity android:name=".CameraVerify"></activity>
     </application>
 
 </manifest>

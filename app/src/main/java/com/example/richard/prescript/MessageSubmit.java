@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class CameraDisplay extends AppCompatActivity {
+public class MessageSubmit extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "com.example.richard.prescript.MESSAGE";
     @Override

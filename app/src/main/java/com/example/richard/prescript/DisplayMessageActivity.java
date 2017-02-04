@@ -14,7 +14,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_message);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra (CameraDisplay.EXTRA_MESSAGE);
+        String message = intent.getStringExtra (MessageSubmit.EXTRA_MESSAGE);
         TextView textview = new TextView (this);
         textview.setTextSize(40);
         textview.setText (message);
