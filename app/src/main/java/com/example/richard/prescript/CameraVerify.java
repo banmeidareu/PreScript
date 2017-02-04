@@ -25,32 +25,34 @@ public class CameraVerify extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+    //private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_verify);
+        System.out.println("B");
 
         //mCamera = null;
         //mCameraView = null;
         //file = Uri.parse("");
         takePictureButton = (Button) findViewById(R.id.Button);
         confirmPictureButton = (Button) findViewById(R.id.confirmButton);
-        confirmPictureButton.setEnabled(false);
-        confirmPictureButton.setVisibility(View.INVISIBLE);
+       // confirmPictureButton.setEnabled(false);
+       // confirmPictureButton.setVisibility(View.INVISIBLE);
         imageView = (ImageView) findViewById(R.id.ImageView);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             takePictureButton.setEnabled(false);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-        }
+        }*/
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        System.out.println("C");
     }
 
-    @Override
+   /* @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 0) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
@@ -58,34 +60,44 @@ public class CameraVerify extends AppCompatActivity {
                 takePictureButton.setEnabled(true);
             }
         }
-    }
+    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("E");
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
         }
+
         confirmPictureButton.setEnabled(true);
         confirmPictureButton.setVisibility(View.VISIBLE);
+
+        sendPicture(view);
+        System.out.println("F");
+
     }
 
     public void TakePicture(View view) {
+        System.out.println("A");
+        takePictureButton.setEnabled(false);
+        takePictureButton.setVisibility(View.INVISIBLE);
+
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
         }
-        takePictureButton.setEnabled(false);
-        takePictureButton.setVisibility(View.INVISIBLE);
-
+        System.out.println("D");
 
     }
 
     public void sendPicture(View view) {
+        System.out.println("G");
         Intent sendPictureIntent = new Intent(this, CameraDisplay.class);
         startActivity(sendPictureIntent);
+        System.out.println("H");
     }
 
 
