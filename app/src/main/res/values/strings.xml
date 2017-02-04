@@ -2,4 +2,8 @@
     <string name="app_name">PreScript</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
+    <string name="cameraDisplay">Open Camera</string>
+    <string name="add">add a perscription</string>
+    <string name="view">view perscriptions</string>
+
 </resources>
