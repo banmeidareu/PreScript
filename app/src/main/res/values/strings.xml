@@ -6,4 +6,8 @@
     <string name="add">add a perscription</string>
     <string name="view">view perscriptions</string>
 
+    <string name="delete">delete</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">cancel</string>
+
 </resources>
