@@ -21,7 +21,7 @@ public class CameraVerify extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera_verify);
+        setContentView(R.layout.activity_camera_display);
 
         //mCamera = null;
         //mCameraView = null;

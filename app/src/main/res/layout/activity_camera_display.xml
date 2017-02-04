@@ -11,48 +11,22 @@
     tools:context="com.example.richard.prescript.CameraVerify">
 
     <Button
-    android:id="@+id/button2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBottom="@+id/button3"
-    android:layout_toEndOf="@+id/button4"
-    android:layout_toRightOf="@+id/button4"
-    android:text="@string/confirm"
-    android:onClick="confirm_photo"/>
-
-
-    <Button
-        android:id="@+id/button3"
+        android:id="@+id/Button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button4"
-        android:layout_marginBottom="25dp"
-        android:layout_toLeftOf="@+id/button4"
-        android:layout_toStartOf="@+id/button4"
-        android:text="@string/delete"
-        android:onClick="delete_photo"/>
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp"
-        android:text="@string/cancel"
-        android:onClick="cancel_photo"/>
+        android:onClick="TakePicture"
+        android:text="@string/take_pic"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        android:text=" temporary holder for where the reminder message confirm goes"
-        android:textAlignment="center"
-        android:textSize="12pt"
-        android:layout_marginBottom="12dp"
-        android:layout_above="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <ImageView
+        android:id="@+id/ImageView"
+        android:contentDescription="@string/app_name"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_marginBottom="128dp"
+        android:layout_above="@+id/Button"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="50dp"
@@ -61,8 +35,7 @@
         android:id="@+id/imageView2"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-
+        android:layout_alignParentStart="true"
+        />
 
 </RelativeLayout>
