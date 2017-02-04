@@ -1,64 +1,64 @@
 package com.example.richard.prescript;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.content.Context;
+import android.hardware.Camera;
+import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
-public class CameraVerify extends AppCompatActivity {
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    Button takePictureButton;
-    ImageView imageView;
+import java.io.IOException;
+
+
+public class CameraVerify extends SurfaceView implements SurfaceHolder.Callback {
+    SurfaceHolder mHolder;
+    Camera mCamera;
+    public CameraVerify(Context context, Camera camera) {
+        super(context);
+        mCamera = camera;
+        mCamera.setDisplayOrientation(90);
+        //get the holder and set this class as the callback, so we can get camera data here
+        mHolder = getHolder();
+        mHolder.addCallback(this);
+        //mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera_display);
-
-        //mCamera = null;
-        //mCameraView = null;
-        //file = Uri.parse("");
-        takePictureButton = (Button) findViewById(R.id.Button);
-        imageView = (ImageView) findViewById(R.id.ImageView);
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            takePictureButton.setEnabled(false);
-            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        try{
+            //when the surface is created, we can set the camera to draw images in this surfaceholder
+            mCamera.setPreviewDisplay(surfaceHolder);
+            mCamera.startPreview();
+        } catch (IOException e) {
+            Log.d("ERROR", "Camera error on surfaceCreated " + e.getMessage());
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == 0) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                takePictureButton.setEnabled(true);
-            }
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
+        //before changing the application orientation, you need to stop the preview, rotate and then start it again
+        if(mHolder.getSurface() == null)//check if the surface is ready to receive camera data
+            return;
+
+        try{
+            mCamera.stopPreview();
+        } catch (Exception e){
+            //this will happen when you are trying the camera if it's not running
+        }
+
+        //now, recreate the camera preview
+        try{
+            mCamera.setPreviewDisplay(mHolder);
+            mCamera.startPreview();
+        } catch (IOException e) {
+            Log.d("ERROR", "Camera error on surfaceChanged " + e.getMessage());
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
-        }
-    }
-
-    public void TakePicture(View view) {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        //our app has only one screen, so we'll destroy the camera in the surface
+        //if you are unsing with more screens, please move this code your activity
+        mCamera.stopPreview();
+        mCamera.release();
     }
 }
-

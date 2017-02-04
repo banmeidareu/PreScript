@@ -10,6 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.richard.prescript.PrescriptionDetails">
 
-
+<EditText
+    android:id="@+id/perscription_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:/>
 
 </RelativeLayout>

@@ -14,5 +14,7 @@
 
     <string name="take_pic">Take Picture</string>
 
+    <string name="verify_message">Processing</string>
+
 
 </resources>
