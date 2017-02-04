@@ -12,7 +12,7 @@ public class MessageSubmit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera_verification);
+        setContentView(R.layout.activity_camera_display);
     }
 
     public void sendMessage (View view) {
