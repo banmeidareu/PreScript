@@ -3,6 +3,7 @@ package com.example.richard.prescript;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -13,14 +14,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.googlecode.tesseract.android.TessBaseAPI;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import android.widget.TextView;
 
 public class CameraVerify extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     Button takePictureButton;
     Button confirmPictureButton;
     ImageView imageView;
+    private TessBaseAPI mTess; //Tess API reference
+    String datapath = ""; //path to folder containing language data file
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -42,6 +51,14 @@ public class CameraVerify extends AppCompatActivity {
        // confirmPictureButton.setVisibility(View.INVISIBLE);
         imageView = (ImageView) findViewById(R.id.ImageView);
 
+        datapath = getFilesDir()+ "/tesseract/";
+
+        checkFile(new File(datapath + "tessdata/"));
+
+        //initialize Tesseract API
+        String lang = "eng";
+        mTess = new TessBaseAPI();
+        mTess.init(datapath, lang);
         /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             takePictureButton.setEnabled(false);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
@@ -69,12 +86,15 @@ public class CameraVerify extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
+            String OCRresult = null;
+            mTess.setImage(imageBitmap);
+            OCRresult = mTess.getUTF8Text();
+            TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
+            OCRTextView.setText(OCRresult);
         }
 
         confirmPictureButton.setEnabled(true);
         confirmPictureButton.setVisibility(View.VISIBLE);
-
-        sendPicture(view);
         System.out.println("F");
 
     }
@@ -101,5 +121,54 @@ public class CameraVerify extends AppCompatActivity {
     }
 
 
+    private void copyFiles() {
+        try {
+            //location we want the file to be at
+            String filepath = datapath + "/tessdata/eng.traineddata";
+
+            //get access to AssetManager
+            AssetManager assetManager = getAssets();
+
+            //open byte streams for reading/writing
+            InputStream instream = assetManager.open("tessdata/eng.traineddata");
+            OutputStream outstream = new FileOutputStream(filepath);
+
+            //copy the file to the location specified by filepath
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = instream.read(buffer)) != -1) {
+                outstream.write(buffer, 0, read);
+            }
+            outstream.flush();
+            outstream.close();
+            instream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkFile(File dir) {
+        //directory does not exist, but we can successfully create it
+        if (!dir.exists()&& dir.mkdirs()){
+            copyFiles();
+        }
+        //The directory exists, but there is no data file in it
+        if(dir.exists()) {
+            String datafilepath = datapath+ "/tessdata/eng.traineddata";
+            File datafile = new File(datafilepath);
+            if (!datafile.exists()) {
+                copyFiles();
+            }
+        }
+    }
 }
+
+
+
+
+
+
 
