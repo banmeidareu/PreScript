@@ -3,7 +3,9 @@
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
     <string name="cameraDisplay">Open Camera</string>
-    <string name="add">add a perscription</string>
-    <string name="view">view perscriptions</string>
+    <string name="submit_message">submit message</string>
+    <string name="verify_prescription">verify prescription</string>
+    <string name="add">add a prescription</string>
+    <string name="view">view prescriptions</string>
 
 </resources>

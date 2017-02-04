@@ -12,13 +12,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void addPerscription(View view) {
+    public void addPrescription(View view) {
         System.out.println("hello");
     }
 
     public void viewPrescriptions (View view) {
-
+        Intent intent = new Intent (this, PrescriptionList.class);
+        startActivity (intent);
     }
+
+    public void viewCameraVerify (View view) {
+        Intent intent = new Intent (this, CameraVerify.class);
+        startActivity (intent);
+    }
+
 
     public void viewMessageSubmit(View view) {
         Intent intent = new Intent(this, MessageSubmit.class);
