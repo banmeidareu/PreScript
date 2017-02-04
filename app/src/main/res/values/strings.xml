@@ -8,4 +8,8 @@
     <string name="add">add a prescription</string>
     <string name="view">view prescriptions</string>
 
+    <string name="delete">delete</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">cancel</string>
+
 </resources>
