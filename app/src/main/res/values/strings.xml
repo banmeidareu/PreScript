@@ -16,5 +16,7 @@
 
     <string name="verify_message">Processing</string>
 
+    <string name="process">Process</string>
+
 
 </resources>
