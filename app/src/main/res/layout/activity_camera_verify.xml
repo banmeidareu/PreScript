@@ -20,16 +20,15 @@
         android:text="@string/take_pic"/>
 
     <Button
-        android:id="@+id/confirmButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/Button1"
+        android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="sendPicture"
-        android:text="@string/confirm"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@android:color/holo_red_light"
         android:visibility="invisible"
-        android:enabled="false"/>
-
+        android:onClick="DeletePicture"
+        android:text="@string/X"/>
 
     <ImageView
         android:layout_width="50dp"
@@ -50,5 +49,16 @@
         android:layout_marginBottom="118dp"
         android:layout_above="@+id/Button"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/OCRTextView"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:background="#dedede"
+        android:textColor="#a3a3a3" />
+
 
 </RelativeLayout>

@@ -57,25 +57,25 @@ public class CameraDisplay extends AppCompatActivity {
         for (int i = 0; i < s.length(); i++) {
             if (words[i] == "days" || words[i] == "day") { // if matches TAKE
 
-                duration= words[i - 1] + " " + words[i];
+                duration = words[i - 1] + " " + words[i];
             }
         }
         return duration;
     }
 
-    protected String parseName(String s){
+    protected String parseName(String s) {
         String[] words = s.split("\\s+");    // splits s into it's words
         String name = "0"; //default dosage
         for (int i = 0; i < s.length(); i++) {
             if (words[i] == "MG") { // if matches TAKE
 
-                name = words[i - 2] + " " + words[i-1] +" "+ words[i];
+                name = words[i - 2] + " " + words[i - 1] + " " + words[i];
             }
         }
         return name;
     }
 
-    protected String fullString (String s){
+    protected String fullString(String s) {
         String dose = parseDose(s);
         String times = parseTimes(s);
         String duration = parseDuration(s);
@@ -88,8 +88,11 @@ public class CameraDisplay extends AppCompatActivity {
     }
 
     public File TempFile(Context context, String url) {
-        File file = new File(context.getFilesDir(),filename )
+        File file = new File(context.getFilesDir(), filename)
 
+
+    }
 
 }
 
+}

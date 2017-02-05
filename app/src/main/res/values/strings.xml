@@ -13,8 +13,14 @@
     <string name="cancel">cancel</string>
 
     <string name="take_pic">Take Picture</string>
+    <string name="Confirm">Confirm</string>
+
 
     <string name="verify_message">Processing</string>
+
+    <string name="process">Process</string>
+
+    <string name="X">X</string>
 
 
 </resources>

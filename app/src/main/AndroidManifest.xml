@@ -18,8 +18,11 @@
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".PrescriptionList" />
         <activity android:name=".PrescriptionDetails" />
-        <activity android:name=".CameraVerify">
-        <activity android:name=".CameraDisplay"></activity>
+
+        <activity android:name=".CameraVerify" />
+        <activity android:name=".CameraDisplay">
+        </activity>
+
     </application>
 
     <uses-permission android:name="android.permission.CAMERA" />
