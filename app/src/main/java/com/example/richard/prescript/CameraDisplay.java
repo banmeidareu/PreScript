@@ -34,9 +34,12 @@ public class CameraDisplay extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             s = extras.getString("prescription");
+        } else {
+            s = "RX: 9913781\nTake 1 capsule three times daily for fourteen days\nDesloratadine 200 MG";
+
         }
 
-        s = "RX: 9913781\nTake 1 capsule three times daily for fourteen days\nDesloratadine 200 MG";
+
 
         //setContentView(R.layout.activity_camera_display);
         textView = (TextView) findViewById(R.id.verify_message);
