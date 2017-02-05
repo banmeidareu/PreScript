@@ -1,6 +1,7 @@
 package com.example.richard.prescript;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;

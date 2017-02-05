@@ -11,14 +11,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class PrescriptionDataDbHelper extends SQLiteOpenHelper {
 
     //increment the data base version if the schema is changed
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "PrescriptionData.db";
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + PrescriptionDataContract.PrescriptionEntry.TABLE_NAME + " (" +
                     PrescriptionDataContract.PrescriptionEntry._ID + " INTEGER PRIMARY KEY," +
                     PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_DRUG + " TEXT," +
-                    PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_DOSE + " INTEGER," +
+                    PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_DOSE + " TEXT," +
                     PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_FREQUENCY + " TEXT );";
 
     private static final String SQL_DELETE_ENRTIES =

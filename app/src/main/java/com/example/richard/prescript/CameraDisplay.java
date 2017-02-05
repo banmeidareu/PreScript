@@ -110,6 +110,7 @@ public class CameraDisplay extends AppCompatActivity {
 
     public void confirm_photo (View view) {
         //Save to SQL Database
+
     }
 
    /* public File TempFile(Context context, String url) {

@@ -20,7 +20,7 @@ public class PrescriptionList extends AppCompatActivity {
         setContentView(R.layout.activity_prescription_list);
 
         dbHelper = new PrescriptionDataDbHelper(getApplicationContext());
-        addPrescription("Ibuprofin", "Twice a week", 1);
+        addPrescription("Ibuprofin", "Twice a week", "1");
         displayDatabase();
         /*
         for (int i = 0; i < 12; i++) {
@@ -29,10 +29,10 @@ public class PrescriptionList extends AppCompatActivity {
     }
 
     private void addDefaultDrug () {
-        addPrescription("Tylenol", "Every day", 3);
+        addPrescription("Tylenol", "Every day", "3");
     }
 
-    public void addPrescription (String drug, String frequency, int dose) {
+    public void addPrescription (String drug, String frequency, String dose) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         //create map of values, where columns are keys
@@ -78,7 +78,7 @@ public class PrescriptionList extends AppCompatActivity {
                     cursor.getColumnIndexOrThrow(PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_DRUG));
             String entryFrequency = cursor.getString (
                     cursor.getColumnIndexOrThrow(PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_FREQUENCY));
-            int entryDose = cursor.getInt (
+            String entryDose = cursor.getString (
                     cursor.getColumnIndexOrThrow(PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_DOSE));
             drugNames.add (entryDrugName);
             Log.d(err, "drug: " + entryDrugName + " frequency: " + entryFrequency+ " dose: " + entryDose);
