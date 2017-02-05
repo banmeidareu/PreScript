@@ -80,7 +80,8 @@ public class CameraVerify extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
+        //TESTING
+        TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -89,12 +90,15 @@ public class CameraVerify extends AppCompatActivity {
             mTess.setImage(imageBitmap);
             OCRresult = mTess.getUTF8Text();
             prescription = OCRresult;
+            //TESTING
             //OCRTextView.setText(OCRresult);
             deleteButton.setVisibility(View.VISIBLE);
             deleteButton.setEnabled(true);
         }
         if (prescription.equals("")) {
             takePictureButton.setText("Take Picture");
+            //TESTING
+            OCRTextView.setText("UNSUCCESSFUL");
         }
 
         System.out.println("F");
@@ -120,8 +124,9 @@ public class CameraVerify extends AppCompatActivity {
 
 
     public void DeletePicture(View view) {
-        //TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
-        //OCRTextView.setText("");
+        //TESTING(2)
+        TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
+        OCRTextView.setText("");
         imageView.setImageBitmap(null);
         deleteButton.setVisibility(View.INVISIBLE);
         deleteButton.setEnabled(false);
