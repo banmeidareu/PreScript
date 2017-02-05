@@ -46,9 +46,9 @@ public class CameraDisplay extends AppCompatActivity {
 
     protected String parseDose(String s) {
         String[] words = s.split("\\s+");    // splits s into it's words
-        String dosage = "0"; //default dosage
+        String dosage = "hello"; //default dosage
         for (int i = 0; i < words.length; i++) {
-            if (words[i].toLowerCase() .equals ("Take") || words[i] .equals ("take")) { // if matches TAKE
+            if (words[i].toLowerCase() .equals ("take") || words[i] .equals ("take")) { // if matches TAKE
 
                 dosage = words[i+1] + " " + words[i+2];
             }

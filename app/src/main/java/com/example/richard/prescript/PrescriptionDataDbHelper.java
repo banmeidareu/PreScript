@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class PrescriptionDataDbHelper extends SQLiteOpenHelper {
 
     //increment the data base version if the schema is changed
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "PrescriptionData.db";
 
     private static final String SQL_CREATE_ENTRIES =
