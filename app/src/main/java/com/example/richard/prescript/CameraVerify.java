@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 public class CameraVerify extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    String prescription = "";
     Button takePictureButton;
     Button deleteButton;
     ImageView imageView;
@@ -78,7 +79,7 @@ public class CameraVerify extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
+        //TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -86,11 +87,12 @@ public class CameraVerify extends AppCompatActivity {
             String OCRresult = null;
             mTess.setImage(imageBitmap);
             OCRresult = mTess.getUTF8Text();
-            OCRTextView.setText(OCRresult);
+            prescription = OCRresult;
+            //OCRTextView.setText(OCRresult);
             deleteButton.setVisibility(View.VISIBLE);
             deleteButton.setEnabled(true);
         }
-        if (OCRTextView.getText().toString().equals("")) {
+        if (prescription.equals("")) {
             takePictureButton.setText("Take Picture");
         }
     }
@@ -106,13 +108,14 @@ public class CameraVerify extends AppCompatActivity {
         else {
             takePictureButton.setText("Take Picture");
             Intent sendPictureIntent = new Intent(this, CameraDisplay.class);
+            sendPictureIntent.putExtra("prescription", prescription);
             startActivity(sendPictureIntent);
         }
     }
 
     public void DeletePicture(View view) {
-        TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
-        OCRTextView.setText("");
+        //TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
+        //OCRTextView.setText("");
         imageView.setImageBitmap(null);
         deleteButton.setVisibility(View.INVISIBLE);
         deleteButton.setEnabled(false);
