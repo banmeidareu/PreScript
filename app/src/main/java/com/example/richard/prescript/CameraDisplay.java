@@ -40,7 +40,6 @@ public class CameraDisplay extends AppCompatActivity {
         }
 
 
-
         //setContentView(R.layout.activity_camera_display);
         textView = (TextView) findViewById(R.id.verify_message);
         textView.setText(s);
@@ -50,9 +49,9 @@ public class CameraDisplay extends AppCompatActivity {
         String[] words = s.split("\\s+");    // splits s into it's words
         String dosage = "0"; //default dosage
         for (int i = 0; i < words.length; i++) {
-            if (words[i] == "Take" || words[i] == "take") { // if matches TAKE
+            if (words[i] .equals ("Take") || words[i] .equals ("take")) { // if matches TAKE
 
-                dosage = words[i];
+                dosage = words[i+1] + " " + words[i+2];
             }
         }
         return dosage;
@@ -62,7 +61,7 @@ public class CameraDisplay extends AppCompatActivity {
         String[] words = s.split("\\s+");    // splits s into it's words
         String times = "0"; //default dosage
         for (int i = 0; i < words.length; i++) {
-            if (words[i] == "ti" || words[i] == "time") { // if matches TAKE
+            if (words[i] .equals ("times") || words[i] .equals ("time")) { // if matches TAKE
 
                 times = words[i - 1] + " " + words[i];
             }
@@ -74,7 +73,7 @@ public class CameraDisplay extends AppCompatActivity {
         String[] words = s.split("\\s+");    // splits s into it's words
         String duration = "0"; //default dosage
         for (int i = 0; i < words.length; i++) {
-            if (words[i] == "da" || words[i] == "day") { // if matches TAKE
+            if (words[i] .equals ("days") || words[i] .equals ("day")) { // if matches TAKE
 
                 duration = words[i - 1] + " " + words[i];
             }
@@ -86,7 +85,7 @@ public class CameraDisplay extends AppCompatActivity {
         String[] words = s.split("\\s+");    // splits s into it's words
         String name = "0"; //default dosage
         for (int i = 0; i < words.length; i++) {
-            if (words[i] == "MG") { // if matches TAKE
+            if (words[i] .equals ("MG")) { // if matches TAKE
 
                 name = words[i - 2] + " " + words[i - 1] + " " + words[i];
             }
@@ -138,11 +137,10 @@ public class CameraDisplay extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
     }
 
     public String[] threeStrings (String s){
-                String[] myStrings ={parseName(s),parseDose(s),parseTimes(s) +" " + parseDuration(s)};
+                String[] myStrings ={parseName(s),parseDose(s),parseTimes(s) +" daily for " + parseDuration(s)};
         return myStrings;
 
     }

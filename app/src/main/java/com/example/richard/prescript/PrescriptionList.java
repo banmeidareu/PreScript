@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,9 @@ public class PrescriptionList extends AppCompatActivity {
         setContentView(R.layout.activity_prescription_list);
 
         dbHelper = new PrescriptionDataDbHelper(getApplicationContext());
-        addPrescription("Ibuprofin", "Twice a week", "1");
+        //addPrescription("Ibuprofin", "Twice a week", "1");
         displayDatabase();
-        /*
-        for (int i = 0; i < 12; i++) {
+        /*for (int i = 0; i < 12; i++) {
             deletePrescription(i);
         }*/
     }
@@ -81,8 +80,21 @@ public class PrescriptionList extends AppCompatActivity {
             String entryDose = cursor.getString (
                     cursor.getColumnIndexOrThrow(PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_DOSE));
             drugNames.add (entryDrugName);
-            Log.d(err, "drug: " + entryDrugName + " frequency: " + entryFrequency+ " dose: " + entryDose);
+            drugNames.add (entryFrequency);
+            drugNames.add (entryDose);
+            //Log.d(err, "drug: " + entryDrugName + " frequency: " + entryFrequency+ " dose: " + entryDose);
         }
+        //Setting the "View Prescriptions" page
+        String list = "";
+        for (int i = 0; i < drugNames.size(); ++i) {
+            list += drugNames.get(i);
+            list += "\n";
+            if ((i%3) == 2) {
+                list += "\n";
+            }
+        }
+        TextView tv = (TextView) findViewById(R.id.p_list);
+        tv.setText(list);
         cursor.close();
     }
 

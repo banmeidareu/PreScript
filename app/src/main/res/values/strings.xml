@@ -24,5 +24,7 @@
 
     <string name="Back">Back</string>
 
+    <string name="prescription_list">Prescription List</string>
+
 
 </resources>
