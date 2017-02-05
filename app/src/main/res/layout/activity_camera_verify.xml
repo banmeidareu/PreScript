@@ -30,6 +30,14 @@
         android:onClick="DeletePicture"
         android:text="@string/X"/>
 
+    <Button
+        android:id="@+id/Button2"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="GoHome"
+        android:text="@string/Back"/>
+
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
