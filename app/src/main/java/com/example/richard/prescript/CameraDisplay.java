@@ -1,7 +1,9 @@
 package com.example.richard.prescript;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +22,12 @@ public class CameraDisplay extends AppCompatActivity {
 
     String s;
     TextView textView;
+    PrescriptionDataDbHelper dbHelper;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_display);
+        dbHelper = new PrescriptionDataDbHelper(getApplicationContext());
 
         s = "";
 
@@ -108,13 +112,35 @@ public class CameraDisplay extends AppCompatActivity {
         startActivity(sendPictureIntent);
     }
 
+    public void addPrescription (String drug, String frequency, String dose) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        //create map of values, where columns are keys
+        ContentValues values = new ContentValues();
+        values.put (PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_DRUG, drug);
+        values.put (PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_FREQUENCY, frequency);
+        values.put (PrescriptionDataContract.PrescriptionEntry.COLUMN_NAME_DOSE, dose);
+
+        //insert the new row
+        long newRowId = db.insert (PrescriptionDataContract.PrescriptionEntry.TABLE_NAME, null, values);
+    }
+
     public void confirm_photo (View view) {
         //Save to SQL Database
+        String [] drugValues = threeStrings (s);
+        String drugName = drugValues[0];
+        String drugDose = drugValues[1];
+        String drugFrequency = drugValues[2];
+        addPrescription(drugName, drugFrequency, drugDose);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
     }
 
     public String[] threeStrings (String s){
                 String[] myStrings ={parseName(s),parseDose(s),parseTimes(s) +" " + parseDuration(s)};
+        return myStrings;
 
     }
 
