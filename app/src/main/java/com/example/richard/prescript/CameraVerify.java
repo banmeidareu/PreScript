@@ -74,7 +74,7 @@ public class CameraVerify extends AppCompatActivity {
         confirmPictureButton.setEnabled(true);
         confirmPictureButton.setVisibility(View.VISIBLE);
 
-        sendPicture(view);
+        //sendPicture(view);
         System.out.println("F");
 
     }
