@@ -112,6 +112,11 @@ public class CameraDisplay extends AppCompatActivity {
         //Save to SQL Database
     }
 
+    public String[] threeStrings (String s){
+                String[] myStrings ={parseName(s),parseDose(s),parseTimes(s) +" " + parseDuration(s)};
+
+    }
+
    /* public File TempFile(Context context, String url) {
         File file = new File(context.getFilesDir(), filename);
 
