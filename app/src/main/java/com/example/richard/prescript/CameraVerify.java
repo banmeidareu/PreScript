@@ -97,13 +97,7 @@ public class CameraVerify extends AppCompatActivity {
         }
     }
 
-<<<<<<< HEAD
-        confirmPictureButton.setEnabled(true);
-        confirmPictureButton.setVisibility(View.VISIBLE);
 
-
-        System.out.println("F");
-=======
     public void TakePicture(View view) {
         if (takePictureButton.getText().equals("Take Picture")) {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -119,7 +113,7 @@ public class CameraVerify extends AppCompatActivity {
             startActivity(sendPictureIntent);
         }
     }
->>>>>>> c45b2069d8d9b77ced291acbc8b1682a33753920
+
 
     public void DeletePicture(View view) {
         //TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
