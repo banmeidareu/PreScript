@@ -26,7 +26,7 @@ import android.widget.TextView;
 public class CameraVerify extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     Button takePictureButton;
-    Button confirmPictureButton;
+    Button deleteButton;
     ImageView imageView;
     private TessBaseAPI mTess; //Tess API reference
     String datapath = ""; //path to folder containing language data file
@@ -40,15 +40,13 @@ public class CameraVerify extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_verify);
-        System.out.println("B");
 
         //mCamera = null;
         //mCameraView = null;
         //file = Uri.parse("");
         takePictureButton = (Button) findViewById(R.id.Button);
-        confirmPictureButton = (Button) findViewById(R.id.confirmButton);
-       // confirmPictureButton.setEnabled(false);
-       // confirmPictureButton.setVisibility(View.INVISIBLE);
+        deleteButton = (Button) findViewById(R.id.Button1);
+        deleteButton.setEnabled(false);
         imageView = (ImageView) findViewById(R.id.ImageView);
 
         datapath = getFilesDir()+ "/tesseract/";
@@ -66,7 +64,6 @@ public class CameraVerify extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-        System.out.println("C");
     }
 
    /* @Override
@@ -81,7 +78,7 @@ public class CameraVerify extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("E");
+        TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -89,37 +86,38 @@ public class CameraVerify extends AppCompatActivity {
             String OCRresult = null;
             mTess.setImage(imageBitmap);
             OCRresult = mTess.getUTF8Text();
-            TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
             OCRTextView.setText(OCRresult);
+            deleteButton.setVisibility(View.VISIBLE);
+            deleteButton.setEnabled(true);
         }
-
-        confirmPictureButton.setEnabled(true);
-        confirmPictureButton.setVisibility(View.VISIBLE);
-        System.out.println("F");
-
+        if (OCRTextView.getText().toString().equals("")) {
+            takePictureButton.setText("Take Picture");
+        }
     }
 
     public void TakePicture(View view) {
-        System.out.println("A");
-        takePictureButton.setEnabled(false);
-        takePictureButton.setVisibility(View.INVISIBLE);
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-
+        if (takePictureButton.getText().equals("Take Picture")) {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+            takePictureButton.setText("Confirm");
         }
-        System.out.println("D");
-
+        else {
+            takePictureButton.setText("Take Picture");
+            Intent sendPictureIntent = new Intent(this, CameraDisplay.class);
+            startActivity(sendPictureIntent);
+        }
     }
 
-    public void sendPicture(View view) {
-        System.out.println("G");
-        Intent sendPictureIntent = new Intent(this, CameraDisplay.class);
-        startActivity(sendPictureIntent);
-        System.out.println("H");
+    public void DeletePicture(View view) {
+        TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
+        OCRTextView.setText("");
+        imageView.setImageBitmap(null);
+        deleteButton.setVisibility(View.INVISIBLE);
+        deleteButton.setEnabled(false);
+        takePictureButton.setText("Take Picture");
     }
-
 
     private void copyFiles() {
         try {
