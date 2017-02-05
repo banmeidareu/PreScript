@@ -19,7 +19,7 @@
         <activity android:name=".PrescriptionList" />
         <activity android:name=".PrescriptionDetails" />
         <activity android:name=".CameraVerify">
-        </activity>
+        <activity android:name=".CameraDisplay"></activity>
     </application>
 
     <uses-permission android:name="android.permission.CAMERA" />
