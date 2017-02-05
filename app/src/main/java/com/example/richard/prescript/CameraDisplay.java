@@ -39,7 +39,6 @@ public class CameraDisplay extends AppCompatActivity {
 
         }
 
-
         //setContentView(R.layout.activity_camera_display);
         textView = (TextView) findViewById(R.id.verify_message);
         textView.setText(s);
@@ -49,7 +48,7 @@ public class CameraDisplay extends AppCompatActivity {
         String[] words = s.split("\\s+");    // splits s into it's words
         String dosage = "0"; //default dosage
         for (int i = 0; i < words.length; i++) {
-            if (words[i] .equals ("Take") || words[i] .equals ("take")) { // if matches TAKE
+            if (words[i].toLowerCase() .equals ("Take") || words[i] .equals ("take")) { // if matches TAKE
 
                 dosage = words[i+1] + " " + words[i+2];
             }
@@ -61,7 +60,7 @@ public class CameraDisplay extends AppCompatActivity {
         String[] words = s.split("\\s+");    // splits s into it's words
         String times = "0"; //default dosage
         for (int i = 0; i < words.length; i++) {
-            if (words[i] .equals ("times") || words[i] .equals ("time")) { // if matches TAKE
+            if (words[i].toLowerCase() .equals ("times") || words[i].toLowerCase() .equals ("time")) { // if matches TAKE
 
                 times = words[i - 1] + " " + words[i];
             }
@@ -73,7 +72,7 @@ public class CameraDisplay extends AppCompatActivity {
         String[] words = s.split("\\s+");    // splits s into it's words
         String duration = "0"; //default dosage
         for (int i = 0; i < words.length; i++) {
-            if (words[i] .equals ("days") || words[i] .equals ("day")) { // if matches TAKE
+            if (words[i].toLowerCase() .equals ("days") || words[i].toLowerCase() .equals ("day")) { // if matches TAKE
 
                 duration = words[i - 1] + " " + words[i];
             }

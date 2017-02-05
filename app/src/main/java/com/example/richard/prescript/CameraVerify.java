@@ -112,7 +112,7 @@ public class CameraVerify extends AppCompatActivity {
             try {
                 URIBuilder builder = new URIBuilder("https://westus.api.cognitive.microsoft.com/vision/v1.0/ocr");
 
-                builder.setParameter("language", "unk");
+                builder.setParameter("language", "en");
                 builder.setParameter("detectOrientation ", "true");
 
                 URI uri = builder.build();
