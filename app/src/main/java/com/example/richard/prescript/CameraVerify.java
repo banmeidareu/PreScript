@@ -127,6 +127,11 @@ public class CameraVerify extends AppCompatActivity {
         takePictureButton.setText("Take Picture");
     }
 
+    public void GoHome(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
     private void copyFiles() {
         try {
             //location we want the file to be at

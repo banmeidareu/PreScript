@@ -1,12 +1,14 @@
 package com.example.richard.prescript;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import java.io.IOException;
 public class CameraDisplay extends AppCompatActivity {
 
     String s;
+    TextView textView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +32,11 @@ public class CameraDisplay extends AppCompatActivity {
             s = extras.getString("prescription");
         }
 
+        s = "RX: 9913781\nTake 1 capsule three times daily for fourteen days\nDesloratadine 200 MG";
+
         //setContentView(R.layout.activity_camera_display);
-        System.out.println(s);
-        System.out.println("ASDASDSADSADSADSADSADA");
-        TextView textView = (TextView) findViewById(R.id.verify_message);
+        textView = (TextView) findViewById(R.id.verify_message);
         textView.setText(s);
-
-
     }
 
     protected String parseDose(String s) {
@@ -96,6 +97,19 @@ public class CameraDisplay extends AppCompatActivity {
 
         return full;
 
+    }
+
+    public void delete_photo (View view) {
+        textView.setText("");
+    }
+
+    public void cancel_photo (View view) {
+        Intent sendPictureIntent = new Intent(this, CameraVerify.class);
+        startActivity(sendPictureIntent);
+    }
+
+    public void confirm_photo (View view) {
+        //Save to SQL Database
     }
 
    /* public File TempFile(Context context, String url) {
